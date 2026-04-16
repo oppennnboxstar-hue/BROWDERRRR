@@ -2,12 +2,17 @@ module.exports = {
   appId: 'com.comet.browser',
   productName: 'Comet Browser',
   directories: {
-    output: 'release'
+    output: 'dist',           // меняем с 'release' на 'dist' для совместимости
+    buildResources: 'build'   // папка с иконками и дополнительными ресурсами
   },
   files: [
-    'dist/**/*',
-    'node_modules/**/*',
-    'package.json'
+    'main.js',
+    'preload.js',
+    'index.html',
+    'style.css',
+    'renderer.js',
+    'tor-controller.js',
+    'node_modules/**/*'
   ],
   extraResources: [
     {
@@ -35,5 +40,9 @@ module.exports = {
     allowToChangeInstallationDirectory: true,
     createDesktopShortcut: true,
     createStartMenuShortcut: true
-  }
+  },
+  // Дополнительные настройки для предотвращения ошибок
+  publish: null,              // отключаем публикацию
+  npmRebuild: false,          // не пересобирать нативные модули (если не нужны)
+  removePackageScripts: true  // удалить скрипты из package.json в сборке
 };
