@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; frame-src 'self' https:; child-src 'self' https:;">
+  <title>Comet Browser</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="titlebar">
+      <div class="titlebar-left">
+        <div class="window-controls">
+          <button id="minimize-btn" class="window-btn">─</button>
+          <button id="maximize-btn" class="window-btn">□</button>
+          <button id="close-btn" class="window-btn">✕</button>
+        </div>
+        <div class="logo">☄️ Comet</div>
+      </div>
+      <div class="titlebar-center">
+        <div id="tor-status" class="tor-status connecting">
+          <span class="tor-icon">🛡️</span>
+          <span class="tor-text">Tor: Подключение...</span>
+        </div>
+      </div>
+      <div class="titlebar-right">
+        <button id="new-identity-btn" class="identity-btn" title="Новая личность Tor">🔄</button>
+        <button id="settings-btn" class="settings-btn">⚙️</button>
+      </div>
+    </div>
+    
+    <div id="main-container">
+      <div id="sidebar">
+        <div class="sidebar-header">
+          <span>Perplexity AI</span>
+        </div>
+        <webview id="perplexity-webview" 
+                 src="https://www.perplexity.ai" 
+                 partition="persist:perplexity"
+                 allowpopups="true"
+                 class="sidebar-webview">
+        </webview>
+        <div class="sidebar-resizer"></div>
+      </div>
+      
+      <div id="content">
+        <div id="tabs-bar">
+          <div id="tabs-container"></div>
+          <button id="new-tab-btn" class="new-tab-btn">+</button>
+        </div>
+        
+        <div id="toolbar">
+          <div class="nav-buttons">
+            <button id="back-btn" class="nav-btn" title="Назад">←</button>
+            <button id="forward-btn" class="nav-btn" title="Вперед">→</button>
+            <button id="refresh-btn" class="nav-btn" title="Обновить">↻</button>
+            <button id="home-btn" class="nav-btn" title="Домой">⌂</button>
+          </div>
+          
+          <div id="address-bar-container">
+            <input type="text" id="address-bar" placeholder="Введите адрес или поисковый запрос..." spellcheck="false">
+            <button id="go-btn" class="go-btn">→</button>
+          </div>
+          
+          <div class="right-controls">
+            <button id="bookmark-btn" class="action-btn" title="Добавить в закладки">☆</button>
+            <button id="menu-btn" class="action-btn" title="Меню">⋮</button>
+          </div>
+        </div>
+        
+        <div id="webviews-container"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="renderer.js"></script>
+</body>
+</html>
