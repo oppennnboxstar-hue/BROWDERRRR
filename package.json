@@ -1,0 +1,52 @@
+{
+  "name": "comet-browser",
+  "version": "1.0.0",
+  "description": "Comet-like browser with Tor anonymity",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "obfuscate": "javascript-obfuscator ./ --config obfuscator-config.json --output ./obfuscated && rm -rf ./src && mv ./obfuscated ./src"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "javascript-obfuscator": "^4.1.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "socks-proxy-agent": "^8.0.2",
+    "tmp": "^0.2.1",
+    "node-fetch": "^2.7.0"
+  },
+  "build": {
+    "appId": "com.comet.browser",
+    "productName": "Comet Browser",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "style.css",
+      "renderer.js",
+      "tor-controller.js",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "icon.png"
+    }
+  }
+}
